@@ -1,82 +1,65 @@
-# Lightweight React Template for KAVIA
+# E-commerce Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A responsive React frontend for the e-commerce platform. It integrates with the ecommerce_backend REST API to provide product browsing, authentication, cart management, and order placement.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Product listing with category filter and search
+- Product detail page with add-to-cart
+- Authentication: register, login, logout, account update
+- Shopping cart: add, remove, update quantities, clear
+- Checkout: place order from cart
+- View past orders
+- Responsive layout using Material UI (MUI)
+- API client via Axios with token interceptor
+- Organized by features and pages, with React Hooks and Context
 
 ## Getting Started
 
-In the project directory, you can run:
+1) Install dependencies:
+   npm install
 
-### `npm start`
+2) Configure environment:
+   Copy .env.example to .env and set REACT_APP_API_BASE_URL to your backend API base (e.g., http://localhost:5000/api)
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3) Start the app:
+   npm start
+   The app runs at http://localhost:3000
 
-### `npm test`
+## Environment Variables
 
-Launches the test runner in interactive watch mode.
+- REACT_APP_API_BASE_URL: Base URL of the backend API.
 
-### `npm run build`
+## Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- src/api: Axios client and endpoint wrappers
+- src/context: Auth and Cart context providers
+- src/components: Reusable UI components (Layout, ProductCard, CategoryFilter)
+- src/pages: Route pages (Home, Products, Product Detail, Login, Register, Cart, Checkout, Orders, Account)
+- src/App.js: Routing and providers
 
-## Customization
+## Notes on Backend Integration
 
-### Colors
+This frontend expects the backend to expose endpoints similar to:
+- GET /products, GET /products/:id
+- GET /categories
+- POST /auth/login, POST /auth/register, GET /auth/me, POST /auth/logout, PUT /auth/me
+- GET /cart, POST /cart/items, PUT /cart/items/:id, DELETE /cart/items/:id, DELETE /cart
+- POST /orders, GET /orders, GET /orders/:id
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+Responses can vary; the frontend attempts to handle common shapes:
+- Collections may be under items, results, or direct arrays.
+- Pagination metadata may be under meta or pagination.
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+If your backend differs, adjust src/api/endpoints.js accordingly.
 
-### Components
+## Scripts
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+- npm start: Start dev server
+- npm run build: Production build
+- npm test: Run tests in CI mode
+- npm run lint: Lint the codebase
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+## License
 
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
