@@ -1,1 +1,3 @@
-# online-shop-platform-19414
+# Project Repository
+
+This is the initial README file for the project.
